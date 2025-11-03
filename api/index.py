@@ -10,6 +10,7 @@ from pydantic import BaseModel, Field
 from typing import List, Optional
 import uuid
 from datetime import datetime
+from mangum import Mangum
 
 
 ROOT_DIR = Path(__file__).parent
@@ -137,6 +138,8 @@ async def init_default_data():
 @api_router.get("/")
 async def root():
     return {"message": "ZwQ Bio API"}
+
+handler = Mangum(app)
 
 
 @api_router.get("/profile", response_model=BioProfile)
